@@ -5,12 +5,16 @@ Grateful::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'sessions#new'
   resources :gratitudes
   resources :users do
     resources :days
   end
   resources :days
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signup',  to: 'users#new',        via: 'get'
+  match '/login',   to: 'sessions#new',     via: 'get'
+  match '/logout',  to: 'sessions#destryo', via: 'delete'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

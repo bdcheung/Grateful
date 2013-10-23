@@ -1,0 +1,6 @@
+%h1 Your Gratitudes
+-@days.each do |day|
+	="Gratitudes for #{day.created_at.strftime("%A, %B %-d, %Y")}"
+	%ul
+		-day.gratitudes.each do |g|
+			%li=g.body

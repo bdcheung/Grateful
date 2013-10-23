@@ -38,8 +38,7 @@ gem 'haml'
 gem "twitter-bootstrap-rails", "~> 2.2.7"
 
 group :development, :test do
-	gem 'better_errors'
-	gem 'binding_of_caller'
+	gem 'debugger'
 end
 
 # Use unicorn as the app server

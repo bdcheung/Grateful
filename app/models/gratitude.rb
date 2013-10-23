@@ -1,3 +1,4 @@
 class Gratitude < ActiveRecord::Base
-	belongs_to :day
+	has_one :day
+	validates :body, presence: true
 end

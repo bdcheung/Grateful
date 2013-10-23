@@ -1,5 +1,6 @@
+%h1="What are you grateful for today, #{current_user.name}?"
 =form_for @day do |f|
-	=f.fields_for :gratitudes do |gratitude|
-		=gratitude.label :body
-		=gratitude.text_area :body
+	=f.fields_for :gratitudes do |builder|
+		=builder.label :body
+		=builder.text_field :body
 	=f.submit "Submit"
