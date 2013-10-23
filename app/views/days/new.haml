@@ -1,0 +1,5 @@
+=form_for @day do |f|
+	=f.fields_for :gratitudes do |gratitude|
+		=gratitude.label :body
+		=gratitude.text_area :body
+	=f.submit "Submit"
