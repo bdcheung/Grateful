@@ -14,7 +14,7 @@ Grateful::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',        via: 'get'
   match '/login',   to: 'sessions#new',     via: 'get'
-  match '/logout',  to: 'sessions#destryo', via: 'delete'
+  match '/signout',  to: 'sessions#destroy', via: 'delete'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
