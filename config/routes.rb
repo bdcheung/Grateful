@@ -7,6 +7,7 @@ Grateful::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'sessions#new'
   resources :gratitudes
+  resources :users
   resources :users do
     resources :days
   end
@@ -14,7 +15,7 @@ Grateful::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',        via: 'get'
   match '/login',   to: 'sessions#new',     via: 'get'
-  match '/signout',  to: 'sessions#destroy', via: 'delete'
+  match '/signout',  to: 'sessions#destroy', via: [:get, :delete]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
