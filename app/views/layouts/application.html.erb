@@ -47,9 +47,12 @@
           <a class="brand" href="#">Grateful</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Sign Up", "/signup"  %></li>
-              <li><%= link_to "Sign In", "/login"  %></li>
-              <li><%= link_to "Sign Out", signout_path  %></li>
+              <% if signed_in? %>
+                <li><%= link_to "Sign Out", signout_path  %></li>
+              <% else %>
+                <li><%= link_to "Sign Up", "/signup"  %></li>
+                <li><%= link_to "Sign In", "/login"  %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
