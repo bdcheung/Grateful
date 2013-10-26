@@ -1,4 +1,9 @@
 %h1 Your Gratitudes
+%script(type="text/javascript")
+	var word_array = [#{current_user.word_cloud_array}];
+
+	$(function() {$('#wordcloud').jQCloud(word_array);});
+#wordcloud{:style => "width:550px; height:350px"}
 -@days.each do |day|
 	="Gratitudes for #{day.created_at.strftime("%A, %B %-d, %Y")}"
 	%ul
