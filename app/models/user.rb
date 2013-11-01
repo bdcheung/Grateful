@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 	before_save { self.login = login.downcase }
 	before_create :create_remember_token
 
+	def has_gratitudes_for_day?(day)
+		dates = self.gratitudes.pluck(:created_at).map {|x| x.strftime("%Y-%m-%d")}
+		dates.include?(day.strftime("%Y-%m-%d"))
+	end
+
 	def name
 		"#{first_name} #{last_name}"
 	end
@@ -17,8 +22,7 @@ class User < ActiveRecord::Base
 	def gratitude_word_count
 		array = []
 		self.words_used.uniq.each do |w|
-			gratitude_array = [w, self.words_used.count(w)]
-			array << gratitude_array
+			array.push([w, self.words_used.count(w)])
 		end
 		array
 	end

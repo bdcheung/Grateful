@@ -1,12 +1,17 @@
 class DaysController < ApplicationController
 	def index
-		@days = current_user.days.all
+		@days = current_user.days.order("created_at DESC")
 	end
 
 	def new
-		@user = current_user
-		@day = current_user.days.new
-		3.times { @day.gratitudes.build }
+		if current_user.has_gratitudes_for_day?(Time.now)
+			flash[:warning] = "You've already entered your gratefuls for today"
+			redirect_to user_days_path(current_user)
+		else
+			@user = current_user
+			@day = current_user.days.new
+			3.times { @day.gratitudes.build }
+		end
 	end
 	
 	def create
