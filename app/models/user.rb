@@ -20,21 +20,17 @@ class User < ActiveRecord::Base
 	end
 
 	def words_used_excluding_common
-		self.words_used.delete_if {|x| Gratitude::COMMON_ENGLISH_WORDS.include?(x)}
+		words_used.delete_if {|x| Gratitude::COMMON_ENGLISH_WORDS.include?(x)}
 	end
 
-	def gratitude_word_count
-		array = []
-		self.words_used.uniq.each do |w|
-			array.push([w, self.words_used.count(w)])
-		end
-		array
+	def unique_words_used
+		words_used.uniq
 	end
 
 	def word_cloud_array
 		array = []
-		self.gratitude_word_count.each do |c|
-			array << "{text: '#{c[0]}', weight: #{c[1]}}"
+		self.unique_words_used.each do |word|
+			array << "{text: '#{word}', weight: #{self.words_used.count(word)}}"
 		end
 		array.join(", ")
 	end
