@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
 		gratitudes.each.collect(&:words).flatten
 	end
 
+	def words_used_excluding_common
+		self.words_used.delete_if {|x| Gratitude::COMMON_ENGLISH_WORDS.include?(x)}
+	end
+
 	def gratitude_word_count
 		array = []
 		self.words_used.uniq.each do |w|

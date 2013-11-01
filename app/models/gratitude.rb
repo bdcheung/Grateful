@@ -1,4 +1,5 @@
 class Gratitude < ActiveRecord::Base
+	include GratitudesHelper
 	has_one :day
 	validates :body, presence: true
 
