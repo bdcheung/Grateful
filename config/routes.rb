@@ -6,12 +6,12 @@ Grateful::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'sessions#new'
-  resources :gratitudes
+  # resources :gratitudes
   resources :users
   resources :users do
     resources :days
   end
-  resources :days
+  # resources :days
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',        via: 'get'
   match '/login',   to: 'sessions#new',     via: 'get'

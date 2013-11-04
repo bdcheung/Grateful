@@ -1,4 +1,5 @@
 class DaysController < ApplicationController
+	before_action :signed_in
 	def index
 		@days = current_user.days.order("created_at DESC")
 	end
