@@ -19,7 +19,10 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql
+  database: b7phgnqf87tv9670
+  hostname: b7phgnqf87tv9670.mysql.clvrcld.net
+  username: uopjbeuovcgjaa72
+  password: 50c7d4103791463c9c9325365973646f
   pool: 5
   timeout: 5000
