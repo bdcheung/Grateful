@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def signed_in
   	redirect_to login_url, notice: "Please sign in" unless signed_in?
   end
+
+  def admin_user
+  	redirect_to users_path, notice: "You must be an administrator to do that." unless current_user.admin?
+  end
 end

@@ -1,11 +1,37 @@
 class UsersController < ApplicationController
-	before_action :signed_in, only: [:show]
+	before_action :signed_in, only: [:index, :show, :edit, :update, :destroy]
+	before_action :admin_user, only: [:destroy]
+
+	def index
+		@users = User.all
+	end
+
 	def new
 		@user = User.new
 	end
 
 	def show
 		@user = current_user
+	end
+
+	def edit
+		@user = current_user
+	end
+
+	def update
+		@user = current_user
+		if @user.update_attributes(user_params)
+			flash[:success] = "Profile updated"
+			redirect_to @user
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		User.find(params[:id]).destroy
+		flash[:success] = "User deleted."
+		redirect_to root_url
 	end
 
 	def create
