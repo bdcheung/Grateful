@@ -36,6 +36,7 @@ end
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'haml'
 gem 'twitter-bootstrap-rails', '~> 2.2.7'
+# gem 'make_resourceful'
 
 group :development, :test do
 	gem 'debugger'

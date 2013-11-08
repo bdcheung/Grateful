@@ -1,0 +1,43 @@
+!!! HTML
+%html{"lang" => "en"}
+	%head
+		=stylesheet_link_tag "application", :media => :all
+		/ Favicon links for varying iDevice screen sizes and resolutions
+		=favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+		=favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+		=favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+		=favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+		/ And a catchall for all other devises
+		-favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+
+	%body
+		=javascript_include_tag 'application'
+		.navbar.navbar-fluid-top
+			.navbar-inner
+				.container-fluid
+					%a{:class => "btn btn-navbar", "data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+						.icon-bar
+						.icon-bar
+						.icon-bar
+					%a{:class =>"brand"} Gratitudes
+					.container-fluid.nav-collapse
+						%ul.nav
+							-if signed_in?
+								%li= link_to "Your Gratitudes", user_days_path(current_user)
+								%li= link_to "Sign Out", signout_path
+							-else
+								%li= link_to "Sign Up", "/signup"
+								%li= link_to "Sign In", "/login"
+		.container-fluid
+			.row-fluid
+				.span3
+					.well.sidebar-nav
+						%ul.nav.nav-list
+							%li.nav-header Sidebar
+							-if signed_in?
+								%li= link_to "Give Thanks", new_user_day_path(current_user)
+				.span9
+					=bootstrap_flash
+					=yield
+			%footer
+				%p &copy; Brian Cheung 2013
