@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 	end
 
 	def words_used_excluding_common
-		words_used.delete_if {|x| Gratitude::COMMON_ENGLISH_WORDS.include?(x)}
+		words_used - Gratitude::COMMON_ENGLISH_WORDS
 	end
 
 	def unique_words_used
